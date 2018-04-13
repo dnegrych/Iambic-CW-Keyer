@@ -5,7 +5,7 @@ Iambic CW Keyer
    plays tone on speaker, 
    lights LED, 
    writes to console, 
-   keys the radio all without using delay().
+   keys the radio all without using delay()..
  
  Turns on and off a light emitting diode(LED) connected to digital  
  pin 13, when paddle 1 or 2 or both pressed.
