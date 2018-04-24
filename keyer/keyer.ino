@@ -36,7 +36,10 @@ Iambic CW Keyer
 
  Dave Negrych 13 Apr 2018 - Corrected variable type in encode routine
                          - changed type from BOOLEAN to INT
-       
+
+  Dave Negrych 23 Apr 2018 - Corrected letter and ./- print toggle
+                           - key 6 dits to toggle ./- print
+                           - key 6 dahs to toggle leter print                         
 
  */
  
@@ -119,6 +122,7 @@ void Startup(){
   Serial.begin(115200);
   delay(100);
   Serial.println("Initialize Iambic Keyer");
+  Serial.println("Code path /arduino/iambic-keyer/keyer");
   Serial.println("Initialize I/O pins");
   // initialize the LED pin as an output:
   pinMode(ledPin, OUTPUT);      
@@ -152,7 +156,10 @@ void Startup(){
   Serial.print("Word Space time = ");
   Serial.print(wordSpaceTime);
   Serial.println(" milliseconds");
-  
+
+  Serial.println("Key 6 dits to toggle ./- print");
+  Serial.println("Key 6 dahs to toggle letter print");
+
   delay(1000);
 }
 //----------------------------------------------------------
@@ -182,7 +189,7 @@ void decode() {
         case 1211: letter = "F"; break;
         case 1212: letter = "C"; break;
         case 1221: letter = "P"; break;
-      //case 1222: letter = ""; break;
+       //case 1222: letter = ""; break;
         case 2111: letter = "V"; break;
         case 2112: letter = "X"; break;
       //case 2121: letter = ""; break;
@@ -236,11 +243,11 @@ void decode() {
         case 22222: letter = "0"; break;
         
         case 111111: letter = "Toggle dit/dah print";  // 6 dits to toggle dit/dah
-           printDitDah = ~printDitDah; // toggle 
+           printDitDah = !printDitDah; // toggle 
            break;
            
         case 222222: letter = "Toggle letter print";  // 6 dahs to toggle
-           printLetter = ~printLetter; // toggle 
+           printLetter = !printLetter; // toggle 
            break;
         
         default: letter = "(?)";
